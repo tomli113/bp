@@ -17,6 +17,31 @@
             }
         }
         //-------------------------------------
+
+
+
+m.set_file_link=function(records,I,field,td){
+    var filename=records[I].Data[field];
+    td.html("<u style='cursor:pointer'>"+filename+"</u>");
+    td.find('u').on('click',function(){
+        var url=m.Table+"/"+records[I].UID+"-"+field+"-"+filename;
+        $vm.open_s3_url(records[I]._id,m.Table,filename,url);
+    })
+}
+//-------------------------------
+
+$vm.open_s3_url=function(id,table,filename,url){
+    $vm.request({cmd:"s3_download_url",id:id,table:table,filename:filename,url:url},function(res){
+        var link = document.createElement("a");
+        link.href = res.result;
+        //link.style = "visibility:hidden";
+        document.body.appendChild(link);
+        //link.click();
+        //document.body.removeChild(link);
+    });
+}
+//---------------------------------------------
+
     }
 </script>
 <style>
