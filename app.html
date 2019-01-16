@@ -9,10 +9,17 @@
                 <span id=vm-mobile_title class=vm-mobile-title>Business Portal</span>
                 <a id="vm-hamburger_button" class=vm-hamburger-button onclick="$vm.toggle()"><i class="fa fa-bars"></i></a>
             </div>
+
             <div class=vm-desk-logo>
-                <span id=vm-logo-label-A>Business Portal</span><br>
-                <span id=vm-logo-label-B>Modular distributed web application</span>
+                <div id=vm-logo-image></div>
+                <div style='display: inline-block;'>
+                    <span id=vm-logo-label-A>Tom Li</span><br>
+                    <span id=vm-logo-label-B>IT Professional</span>
+                </div>
             </div>
+
+
+
             <div menu id="vm-menu">
                 <a href="?/home"><i class="fa fa-home"></i> Home</a>
                 <a href="?/panel">Control Panel</a>
@@ -119,8 +126,18 @@
         }
         html,body{ margin:0; padding:0; height:100%; font-family:Arial;}
         body{background-size: cover; background-repeat: repeat-x; background-position: center top; background-attachment: fixed;}
-        .body_background_default{ background-image: url(https://image.vmiis.com/bg008.jpg);}
+        .body_background_default{ background-image: url(https://image.vmiis.com/bk013.jpg);}
         #content{
+        }
+        #vm-logo-image{
+            margin-top: -28px;
+            margin-right:20px;
+            width:90px;
+            height:90px;
+            border-radius: 47px;
+            background: url('https://image.vmiis.com/logo.tom.jpg') no-repeat top center;
+            background-size: cover;
+            float:left;
         }
         #vm-logo-label-A{
             font-family: Arial, sans-serif;
