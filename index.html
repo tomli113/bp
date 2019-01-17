@@ -16,25 +16,41 @@
     <script boot-up>
         //------------------------------------
         //change version if your modules have been modified
-        $vm={};$VmAPI={};$vm.ver=[0.36,0.33];
+        $vm={};$vm.ver=[0.31,0.27];
+        //------------------------------------
+        //app urls
+        $vm.public_url_$A='https://www.vmiis.com';
+        $vm.local_url_$A='http://127.0.0.1:8000/vmiis/business-portal';
+        $vm.public_url_$B='https://www.tomliweb.com';
+        $vm.local_url_$B='http://127.0.0.1:8000/tomli113/bp';
+        //------------------------------------
         //where are your frame and app modules
         $vm.module_list={
-            "app":     {"url":"https://tomli113.github.io/bp/app.html"},
-            "frame":   {"url":"https://tomli113.github.io/bp/modules/f/frame.html"},
+            "app":     {"url":"$B/app.html"},
+            "frame":   {"url":"$A/modules/f/frame.html"},
         }
         //------------------------------------
-        //for local debug
-        $vm.local_debug_url=function(url){
-            var urlR=url;
-            if($vm.localhost==true) urlR=url.replace('https://tomli113.github.io/bp','http://127.0.0.1:8000/tomli113/bp');
-            return urlR;
-        }
+        
+        
+        
+        
         //------------------------------------
         //Do not need to chang the following code in most cases
         //The following code will load a framework module and your application module
-        $vm.start_time=new Date().getTime();
+        //------------------------------------
+        $VmAPI={};$vm.start_time=new Date().getTime();
+        //------------------------------------
+        //replace the url
+        $vm.replace_url=function(url){
+            var urlR=url.replace("$A",$vm.public_url_$A);
+                urlR=urlR.replace("$B",$vm.public_url_$B);
+            if($vm.localhost==true) urlR=urlR.replace($vm.public_url_$A,$vm.local_url_$A);
+            if($vm.localhost==true) urlR=urlR.replace($vm.public_url_$B,$vm.local_url_$B);
+            return urlR;
+        }
+        //------------------------------------
         if(window.location.hostname=='127.0.0.1' || window.location.hostname=='localhost') $vm.localhost=true;
-        for(p in $vm.module_list) $vm.module_list[p].url=$vm.local_debug_url($vm.module_list[p].url);
+        for(p in $vm.module_list) $vm.module_list[p].url=$vm.replace_url($vm.module_list[p].url);
         //------------------------------------
         $vm._I=0; $vm._boot=function(){
             $vm._I++;
